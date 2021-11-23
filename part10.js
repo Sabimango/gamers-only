@@ -1,6 +1,6 @@
 var config = {
   type: Phaser.AUTO,
-  width: 800,
+  width: 900,
   height: 600,
   physics: {
     default: "arcade",
@@ -63,7 +63,8 @@ function create() {
 
   //  Player physics properties. Give the little guy a slight bounce.
   player.setBounce(0.2);
-  player.setCollideWorldBounds(true);
+  player.setCollideWorldBounds(false);
+  headPosition = player.x;
 
   player2 = this.physics.add.sprite(100, 450, "dude").setScale(1);
 
@@ -203,6 +204,8 @@ function update() {
   ) {
     player2.setVelocityX(330);
   }
+  if (cursors.right.isDown && player.x === 760)
+    this.player.x = Phaser.Math.Wrap(this.player.x - 1, 0, 40);
 }
 
 function collectStar(player, star) {
