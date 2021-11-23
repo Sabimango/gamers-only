@@ -63,7 +63,10 @@ function create() {
 
   //  Player physics properties. Give the little guy a slight bounce.
   player.setBounce(0.2);
-  player.setCollideWorldBounds(true);
+  /* player.setCollideWorldBounds(true); */
+
+  player.body.setCollideWorldBounds(true);
+  player.body.onWorldBounds();
 
   player2 = this.physics.add.sprite(100, 450, "dude").setScale(1);
 
@@ -202,6 +205,10 @@ function update() {
     player2Controls.right.isDown
   ) {
     player2.setVelocityX(330);
+  }
+
+  if (this.physics.onWorldBounds() == true && cursors.right.isDown) {
+    this.player.x = this.player.x + 10;
   }
 }
 
