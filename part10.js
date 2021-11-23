@@ -26,7 +26,8 @@ var player2Controls;
 var score = 0;
 var gameOver = false;
 var scoreText;
-var canDoubleJump;
+
+var jumpcount;
 
 var game = new Phaser.Game(config);
 
@@ -177,9 +178,17 @@ function update() {
     player.setVelocityY(50);
   }
   const didPressJump = Phaser.Input.Keyboard.JustDown(this.cursors.up);
+  const touchingground = this.player.body.touching.down;
 
+  if (didPressJump && (touchingground || this.jumpcount < 2)) {
+    this.player.setVelocityY(-330);
+    this.jumpcount++;
+  }
+
+  if (touchingground && !didPressJump) {
+    this.jumpcount = 0;
+  }
   // player2 controls
-
   if (player2Controls.left.isDown) {
     player2.setVelocityX(-160);
 
