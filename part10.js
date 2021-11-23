@@ -140,7 +140,7 @@ function update() {
   if (gameOver) {
     return;
   }
-
+  //move to the left with speed -160
   if (cursors.left.isDown) {
     player.setVelocityX(-160);
 
@@ -150,19 +150,20 @@ function update() {
 
     player.anims.play("right", true);
   } else {
+    // if you dont press left or right
     player.setVelocityX(0);
 
     player.anims.play("turn");
   }
-
+  // so the character can jump, but needs to touch the ground
   if (cursors.up.isDown && player.body.touching.down) {
     player.setVelocityY(-330);
   }
-
+  // to run fast (sprint) to the left
   if (cursors.down.isDown && player.body.touching.down && cursors.left.isDown) {
     player.setVelocityX(-330);
   }
-
+  // to run fast (sprint) to the right
   if (
     cursors.down.isDown &&
     player.body.touching.down &&
@@ -170,6 +171,11 @@ function update() {
   ) {
     player.setVelocityX(330);
   }
+  //slow fall, cool
+  if (cursors.down.isDown && player.body.touching.none) {
+    player.setVelocityY(50);
+  }
+  // player2 controls
 
   if (player2Controls.left.isDown) {
     player2.setVelocityX(-160);
@@ -202,6 +208,9 @@ function update() {
     player2Controls.right.isDown
   ) {
     player2.setVelocityX(330);
+  }
+  if (player2Controls.down.isDown && player2.body.touching.none) {
+    player2.setVelocityY(50);
   }
 }
 
