@@ -59,13 +59,13 @@ function create() {
   platforms.create(750, 220, "ground");
 
   // The player and its settings
-  player = this.physics.add.sprite(100, 450, "dude").setScale(1);
+  player = this.physics.add.sprite(700, 450, "dude").setScale(1);
 
   //  Player physics properties. Give the little guy a slight bounce.
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
 
-  player2 = this.physics.add.sprite(700, 450, "dude").setScale(1);
+  player2 = this.physics.add.sprite(100, 450, "dude").setScale(1);
 
   player2.setBounce(0.2);
   player2.setCollideWorldBounds(true);
@@ -159,6 +159,18 @@ function update() {
     player.setVelocityY(-330);
   }
 
+  if (cursors.down.isDown && player.body.touching.down && cursors.left.isDown) {
+    player.setVelocityX(-330);
+  }
+
+  if (
+    cursors.down.isDown &&
+    player.body.touching.down &&
+    cursors.right.isDown
+  ) {
+    player.setVelocityX(330);
+  }
+
   if (player2Controls.left.isDown) {
     player2.setVelocityX(-160);
 
@@ -175,6 +187,21 @@ function update() {
 
   if (player2Controls.up.isDown && player2.body.touching.down) {
     player2.setVelocityY(-330);
+  }
+  if (
+    player2Controls.down.isDown &&
+    player2.body.touching.down &&
+    player2Controls.left.isDown
+  ) {
+    player2.setVelocityX(-330);
+  }
+
+  if (
+    player2Controls.down.isDown &&
+    player2.body.touching.down &&
+    player2Controls.right.isDown
+  ) {
+    player2.setVelocityX(330);
   }
 }
 
