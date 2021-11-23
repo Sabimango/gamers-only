@@ -5,7 +5,7 @@ var config = {
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: 300 },
+      gravity: { y: 320 },
       debug: false,
     },
   },
@@ -17,10 +17,12 @@ var config = {
 };
 
 var player;
+var player2;
 var stars;
 var bombs;
 var platforms;
 var cursors;
+var player2Controls;
 var score = 0;
 var gameOver = false;
 var scoreText;
@@ -36,6 +38,8 @@ function preload() {
     frameWidth: 32,
     frameHeight: 48,
   });
+  console.log(this);
+  console.log(game);
 }
 
 function create() {
@@ -55,11 +59,16 @@ function create() {
   platforms.create(750, 220, "ground");
 
   // The player and its settings
-  player = this.physics.add.sprite(100, 450, "dude");
+  player = this.physics.add.sprite(100, 450, "dude").setScale(1);
 
   //  Player physics properties. Give the little guy a slight bounce.
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
+
+  player2 = this.physics.add.sprite(700, 450, "dude").setScale(1);
+
+  player2.setBounce(0.2);
+  player2.setCollideWorldBounds(true);
 
   //  Our player animations, turning, walking left and walking right.
   this.anims.create({
@@ -85,6 +94,12 @@ function create() {
   //  Input Events
   cursors = this.input.keyboard.createCursorKeys();
 
+  player2Controls = this.input.keyboard.addKeys({
+    up: Phaser.Input.Keyboard.KeyCodes.W,
+    down: Phaser.Input.Keyboard.KeyCodes.S,
+    left: Phaser.Input.Keyboard.KeyCodes.A,
+    right: Phaser.Input.Keyboard.KeyCodes.D,
+  });
   //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
   stars = this.physics.add.group({
     key: "star",
@@ -107,6 +122,7 @@ function create() {
 
   //  Collide the player and the stars with the platforms
   this.physics.add.collider(player, platforms);
+  this.physics.add.collider(player2, platforms);
   this.physics.add.collider(stars, platforms);
   this.physics.add.collider(bombs, platforms);
 
@@ -114,6 +130,10 @@ function create() {
   this.physics.add.overlap(player, stars, collectStar, null, this);
 
   this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+  this.physics.add.overlap(player2, stars, collectStar, null, this);
+
+  this.physics.add.collider(player2, bombs, hitBomb, null, this);
 }
 
 function update() {
@@ -137,6 +157,24 @@ function update() {
 
   if (cursors.up.isDown && player.body.touching.down) {
     player.setVelocityY(-330);
+  }
+
+  if (player2Controls.left.isDown) {
+    player2.setVelocityX(-160);
+
+    player2.anims.play("left", true);
+  } else if (player2Controls.right.isDown) {
+    player2.setVelocityX(160);
+
+    player2.anims.play("right", true);
+  } else {
+    player2.setVelocityX(0);
+
+    player2.anims.play("turn");
+  }
+
+  if (player2Controls.up.isDown && player2.body.touching.down) {
+    player2.setVelocityY(-330);
   }
 }
 
@@ -171,6 +209,10 @@ function hitBomb(player, bomb) {
   player.setTint(0xff0000);
 
   player.anims.play("turn");
+
+  player2.setTint(0xff0000);
+
+  player2.anims.play("turn");
 
   gameOver = true;
 }
