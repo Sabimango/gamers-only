@@ -65,8 +65,16 @@ function create() {
   player.setBounce(0.2);
   /* player.setCollideWorldBounds(true); */
 
-  player.body.setCollideWorldBounds(true);
-  player.body.onWorldBounds();
+  /* player.body.setCollideWorldBounds(true); */
+  /* player.body.setCollideWorldBounds(true); */
+  player.body.onWorldBounds = true;
+  this.physics.world.on(
+    "worldbounds",
+    function (body) {
+      console.log("hello from the edge of the world", body);
+    },
+    this
+  );
 
   player2 = this.physics.add.sprite(100, 450, "dude").setScale(1);
 
@@ -207,8 +215,17 @@ function update() {
     player2.setVelocityX(330);
   }
 
-  if (this.physics.onWorldBounds() == true && cursors.right.isDown) {
-    this.player.x = this.player.x + 10;
+  if (this.physics && cursors.right.isDown) {
+    player.x = player.x + 10;
+    if (player.x > this.physics.world.bounds.width) {
+      player.x = -2;
+    }
+  }
+  if (this.physics && cursors.left.isDown) {
+    player.x = player.x - 10;
+    if (player.x < 0) {
+      player.x = this.physics.world.bounds.width;
+    }
   }
 }
 
