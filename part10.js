@@ -67,19 +67,21 @@ function create() {
 
   /* player.body.setCollideWorldBounds(true); */
   /* player.body.setCollideWorldBounds(true); */
-  player.body.onWorldBounds = true;
-  this.physics.world.on(
+
+  /* player.body.onWorldBounds = true; */
+
+  /*   this.physics.world.on(
     "worldbounds",
     function (body) {
       console.log("hello from the edge of the world", body);
     },
     this
-  );
+  ); */
 
   player2 = this.physics.add.sprite(100, 450, "dude").setScale(1);
 
   player2.setBounce(0.2);
-  player2.setCollideWorldBounds(true);
+  /* player2.setCollideWorldBounds(true); */
 
   //  Our player animations, turning, walking left and walking right.
   this.anims.create({
@@ -215,17 +217,21 @@ function update() {
     player2.setVelocityX(330);
   }
 
-  if (this.physics && cursors.right.isDown) {
-    player.x = player.x + 10;
-    if (player.x > this.physics.world.bounds.width) {
-      player.x = -2;
-    }
+  if (cursors.right.isDown && player.x > this.physics.world.bounds.width) {
+    player.x = -1;
   }
-  if (this.physics && cursors.left.isDown) {
-    player.x = player.x - 10;
-    if (player.x < 0) {
-      player.x = this.physics.world.bounds.width;
-    }
+  if (cursors.left.isDown && player.x < 0) {
+    player.x = this.physics.world.bounds.width;
+  }
+
+  if (
+    player2Controls.right.isDown &&
+    player2.x > this.physics.world.bounds.width
+  ) {
+    player2.x = -1;
+  }
+  if (player2Controls.left.isDown && player2.x < 0) {
+    player2.x = this.physics.world.bounds.width;
   }
 }
 
