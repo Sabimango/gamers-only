@@ -20,6 +20,7 @@ var player;
 var player2;
 var stars;
 var bombs;
+var computers
 var platforms;
 var cursors;
 var player2Controls;
@@ -34,6 +35,7 @@ function preload() {
   this.load.image("ground", "../images/platform.png");
   this.load.image("star", "../images/coffee1.png");
   this.load.image("bomb", "../images/bug123.png");
+  this.load.image("computer", "../images/computer_js_38.png");
   this.load.spritesheet("dude", "../images/dude.png", {
     frameWidth: 32,
     frameHeight: 48,
@@ -103,7 +105,7 @@ function create() {
   //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
   stars = this.physics.add.group({
     key: "star",
-    repeat: 11,
+    repeat: 1,
     setXY: { x: 12, y: 0, stepX: 70 },
   });
 
@@ -113,6 +115,8 @@ function create() {
   });
 
   bombs = this.physics.add.group();
+
+  computers = this.physics.add.group();
 
   //  The score
   scoreText = this.add.text(16, 16, "score: 0", {
@@ -125,15 +129,20 @@ function create() {
   this.physics.add.collider(player2, platforms);
   this.physics.add.collider(stars, platforms);
   this.physics.add.collider(bombs, platforms);
+  this.physics.add.collider(computers, platforms);
 
   //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
   this.physics.add.overlap(player, stars, collectStar, null, this);
 
   this.physics.add.collider(player, bombs, hitBomb, null, this);
 
+  this.physics.add.collider(player, computers, hitComputer, null, this);
+
   this.physics.add.overlap(player2, stars, collectStar, null, this);
 
   this.physics.add.collider(player2, bombs, hitBomb, null, this);
+
+  this.physics.add.collider(player2, computers, hitComputer, null, this);
 }
 
 function update() {
@@ -157,7 +166,7 @@ function update() {
   }
   // so the character can jump, but needs to touch the ground
   if (cursors.up.isDown && player.body.touching.down) {
-    player.setVelocityY(-330);
+    player.setVelocityY(-500);
   }
   // to run fast (sprint) to the left
   if (cursors.down.isDown && player.body.touching.down && cursors.left.isDown) {
@@ -223,21 +232,53 @@ function collectStar(player, star) {
 
   if (stars.countActive(true) === 0) {
     //  A new batch of stars to collect
-    stars.children.iterate(function (child) {
-      child.enableBody(true, child.x, 0, true, true);
-    });
-
     var x =
       player.x < 400
         ? Phaser.Math.Between(400, 800)
         : Phaser.Math.Between(0, 400);
 
-    var bomb = bombs.create(x, 16, "bomb");
-    bomb.setBounce(1);
-    bomb.setCollideWorldBounds(true);
-    bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    var computer = computers.create(x, 16, "computer");
+    computer.setBounce(1);
+    computer.setCollideWorldBounds(true);
+    computer.setVelocity(Phaser.Math.Between(-200, 200), 20);
   }
 }
+
+function hitComputer(player, computer) {
+  computer.disableBody(true, true);
+
+  if (computers.countActive(true) === 0) {
+
+    stars.children.iterate(function (child) {
+      child.enableBody(true, child.x, 0, true, true);
+
+      var x =
+        player.x < 400
+          ? Phaser.Math.Between(400, 800)
+          : Phaser.Math.Between(0, 400);
+
+      var bomb = bombs.create(x, 16, "bomb");
+      bomb.setBounce(1);
+      bomb.setCollideWorldBounds(true);
+      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    });
+  }
+
+
+
+
+
+  //     //  A new batch of stars to collect
+  //     stars.children.iterate(function (child) {
+  //       child.enableBody(true, child.x, 0, true, true)
+
+
+
+
+
+
+}
+
 
 function hitBomb(player, bomb) {
   this.physics.pause();
