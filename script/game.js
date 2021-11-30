@@ -77,12 +77,12 @@ function create() {
   player = this.physics.add.sprite(700, 450, "pikachu").setScale(1);
 
   //  Player physics properties. Give the little guy a slight bounce.
-  player.setBounce(0.2);
+  
   player.setCollideWorldBounds(true);
 
-  player2 = this.physics.add.sprite(100, 550, "ariana").setScale(1);
+  player2 = this.physics.add.sprite(100, 450, "ariana").setScale(1);
 
-  player2.setBounce(0.2);
+  
   player2.setCollideWorldBounds(true);
 
   //  Pikachi animations, turning, walking left and walking right.
@@ -108,7 +108,7 @@ function create() {
 // Ariana animations
   this.anims.create({
     key: "left_a",
-    frames: this.anims.generateFrameNumbers("ariana", { start: 7, end: 12 }),
+    frames: this.anims.generateFrameNumbers("ariana", { start: 13, end: 7 }),
     frameRate: 10,
     repeat: -1,
   });
