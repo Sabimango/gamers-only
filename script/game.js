@@ -46,7 +46,8 @@ function preload() {
       frameWidth: 82,
       frameHeight: 75,
     });
-  this.load.audio("coffee_sound", "../sounds/coffee_drink.mp3");
+  this.load.audio("coffee_sound", "../sounds/coffee_drink2.mp3");
+  this.load.audio("windows_sound", "../sounds/windows_sound.mp3");
   console.log(this);
   console.log(game);
 }
@@ -257,6 +258,8 @@ function collectStar(player, star) {
 
 function hitComputer(player, computer) {
   computer.disableBody(true, true);
+  windows_sound = this.sound.add('windows_sound');
+  windows_sound.play()
 
   if (computers.countActive(true) === 0) {
 
