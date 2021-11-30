@@ -1,7 +1,7 @@
 var config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 1200,
+  height: 700,
   physics: {
     default: "arcade",
     arcade: {
@@ -31,29 +31,31 @@ var scoreText;
 var game = new Phaser.Game(config);
 
 function preload() {
-  this.load.image("sky", "../images/sky.png");
+  this.load.image("sky", "../images/hyperbackground_pixel_2.png");
   this.load.image("ground", "../images/platform.png");
   this.load.image("star", "../images/coffee1.png");
   this.load.image("bomb", "../images/bug123.png");
   this.load.image("computer", "../images/computer_js_38.png");
-  this.load.spritesheet("dude", "../images/dude.png", {
-    frameWidth: 32,
-    frameHeight: 48,
-  });
+  this.load.spritesheet("dude", "../images/dude.png",
+    {
+      frameWidth: 32,
+      frameHeight: 48,
+    });
+  this.load.audio("coffee_sound", "../sounds/coffee_drink.mp3");
   console.log(this);
   console.log(game);
 }
 
 function create() {
   //  A simple background for our game
-  this.add.image(400, 300, "sky");
+  this.add.image(600, 300, "sky");
 
   //  The platforms group contains the ground and the 2 ledges we can jump on
   platforms = this.physics.add.staticGroup();
 
   //  Here we create the ground.
   //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-  platforms.create(400, 568, "ground").setScale(2).refreshBody();
+  platforms.create(700, 700, "ground").setScale(4).refreshBody();
 
   //  Now let's create some ledges
   platforms.create(600, 400, "ground");
@@ -225,6 +227,10 @@ function update() {
 
 function collectStar(player, star) {
   star.disableBody(true, true);
+
+  coffee_sound = this.sound.add('coffee_sound');
+  coffee_sound.play()
+
 
   //  Add and update the score
   score += 10;
