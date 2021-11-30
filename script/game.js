@@ -41,6 +41,11 @@ function preload() {
       frameWidth: 32,
       frameHeight: 48,
     });
+  this.load.spritesheet("pikachu", "../images/pikachu_sprite1.png",
+    {
+      frameWidth: 82,
+      frameHeight: 75,
+    });
   this.load.audio("coffee_sound", "../sounds/coffee_drink.mp3");
   console.log(this);
   console.log(game);
@@ -63,7 +68,7 @@ function create() {
   platforms.create(750, 220, "ground");
 
   // The player and its settings
-  player = this.physics.add.sprite(700, 450, "dude").setScale(1);
+  player = this.physics.add.sprite(700, 450, "pikachu").setScale(1);
 
   //  Player physics properties. Give the little guy a slight bounce.
   player.setBounce(0.2);
@@ -77,20 +82,20 @@ function create() {
   //  Our player animations, turning, walking left and walking right.
   this.anims.create({
     key: "left",
-    frames: this.anims.generateFrameNumbers("dude", { start: 0, end: 3 }),
+    frames: this.anims.generateFrameNumbers("pikachu", { start: 5, end: 8 }),
     frameRate: 10,
     repeat: -1,
   });
 
   this.anims.create({
     key: "turn",
-    frames: [{ key: "dude", frame: 4 }],
+    frames: [{ key: "pikachu", frame: 4 }],
     frameRate: 20,
   });
 
   this.anims.create({
     key: "right",
-    frames: this.anims.generateFrameNumbers("dude", { start: 5, end: 8 }),
+    frames: this.anims.generateFrameNumbers("pikachu", { start: 0, end: 3 }),
     frameRate: 10,
     repeat: -1,
   });
