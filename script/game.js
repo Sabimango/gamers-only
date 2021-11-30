@@ -46,6 +46,11 @@ function preload() {
       frameWidth: 82,
       frameHeight: 75,
     });
+    this.load.spritesheet("ariana", "../images/ariana_grande_sprite2.png",
+    {
+      frameWidth: 156,
+      frameHeight: 206,
+    });
   this.load.audio("coffee_sound", "../sounds/coffee_drink2.mp3");
   this.load.audio("windows_sound", "../sounds/windows_sound.mp3");
   console.log(this);
@@ -61,7 +66,7 @@ function create() {
 
   //  Here we create the ground.
   //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-  platforms.create(700, 700, "ground").setScale(4).refreshBody();
+  platforms.create(700, 740, "ground").setScale(4).refreshBody();
 
   //  Now let's create some ledges
   platforms.create(600, 400, "ground");
@@ -75,12 +80,12 @@ function create() {
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
 
-  player2 = this.physics.add.sprite(100, 450, "dude").setScale(1);
+  player2 = this.physics.add.sprite(100, 550, "ariana").setScale(1);
 
   player2.setBounce(0.2);
   player2.setCollideWorldBounds(true);
 
-  //  Our player animations, turning, walking left and walking right.
+  //  Pikachi animations, turning, walking left and walking right.
   this.anims.create({
     key: "left",
     frames: this.anims.generateFrameNumbers("pikachu", { start: 5, end: 8 }),
@@ -100,6 +105,27 @@ function create() {
     frameRate: 10,
     repeat: -1,
   });
+// Ariana animations
+  this.anims.create({
+    key: "left_a",
+    frames: this.anims.generateFrameNumbers("ariana", { start: 7, end: 12 }),
+    frameRate: 10,
+    repeat: -1,
+  });
+
+  this.anims.create({
+    key: "turn_a",
+    frames: [{ key: "ariana", frame: 6 }],
+    frameRate: 20,
+  });
+
+  this.anims.create({
+    key: "right_a",
+    frames: this.anims.generateFrameNumbers("ariana", { start: 0, end: 5 }),
+    frameRate: 10,
+    repeat: -1,
+  });
+
 
   //  Input Events
   cursors = this.input.keyboard.createCursorKeys();
@@ -197,15 +223,15 @@ function update() {
   if (player2Controls.left.isDown) {
     player2.setVelocityX(-160);
 
-    player2.anims.play("left", true);
+    player2.anims.play("left_a", true);
   } else if (player2Controls.right.isDown) {
     player2.setVelocityX(160);
 
-    player2.anims.play("right", true);
+    player2.anims.play("right_a", true);
   } else {
     player2.setVelocityX(0);
 
-    player2.anims.play("turn");
+    player2.anims.play("turn_a");
   }
 
   if (player2Controls.up.isDown && player2.body.touching.down) {
