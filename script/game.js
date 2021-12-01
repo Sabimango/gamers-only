@@ -32,7 +32,7 @@ var game = new Phaser.Game(config);
 
 function preload() {
   this.load.image("sky", "../images/hyperbackground_pixel_2.png");
-  this.load.image("ground", "../images/platform.png");
+  this.load.image("ground", "../images/platform_ground.png");
   this.load.image("star", "../images/coffee1.png");
   this.load.image("bomb", "../images/bug123.png");
   this.load.image("platform_big", "../images/platform_big.png");
@@ -61,19 +61,20 @@ function preload() {
 
 function create() {
   //  A simple background for our game
-  this.add.image(600, 300, "sky");
+  this.add.image(600, 330, "sky");
 
   //  The platforms group contains the ground and the 2 ledges we can jump on
   platforms = this.physics.add.staticGroup();
 
   //  Here we create the ground.
   //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-  platforms.create(700, 740, "ground").setScale(4).refreshBody();
+  platforms.create(700, 700, "ground").setScale(1).refreshBody();
 
   //  Now let's create some ledges
-  platforms.create(600, 460, "platform_big").setScale(1);
-  platforms.create(140, 270, "platform_medium");
-  platforms.create(1060, 250, "platform_medium");
+  platforms.create(600, 480, "platform_big").setScale(1);
+  platforms.create(140, 300, "platform_medium");
+  platforms.create(1060, 300, "platform_medium");
+  platforms.create(600, 170, "platform_medium");
 
   // The player and its settings
   player = this.physics.add.sprite(700, 450, "pikachu").setScale(0.8);
@@ -82,7 +83,7 @@ function create() {
 
   player.setCollideWorldBounds(true);
 
-  player2 = this.physics.add.sprite(100, 450, "ariana").setScale(0.8);
+  player2 = this.physics.add.sprite(100, 450, "ariana").setScale(0.7);
 
 
   player2.setCollideWorldBounds(true);
