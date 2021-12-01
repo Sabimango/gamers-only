@@ -148,6 +148,7 @@ function create() {
     key: "star",
     repeat: 6,
     setXY: { x: 50, y: 0, stepX: 185 },
+    setScale: { x: 1.2, y: 1.2}
   });
 
   stars.children.iterate(function (child) {
@@ -168,7 +169,7 @@ function create() {
   //  Collide the player and the stars with the platforms
   this.physics.add.collider(player, platforms);
   this.physics.add.collider(player2, platforms);
-  this.physics.add.collider(stars, platforms);
+  this.physics.add.collider(stars, platforms)
   this.physics.add.collider(bombs, platforms);
   this.physics.add.collider(computers, platforms);
 
@@ -286,6 +287,7 @@ function collectStar(player, star) {
     computer.setBounce(1);
     computer.setCollideWorldBounds(true);
     computer.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    computer.setScale( 1.2, 1.2)
   }
 }
 
