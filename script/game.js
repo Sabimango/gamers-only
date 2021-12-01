@@ -55,6 +55,7 @@ function preload() {
     });
   this.load.audio("coffee_sound", "../sounds/coffee_drink2.mp3");
   this.load.audio("windows_sound", "../sounds/windows_sound.mp3");
+  this.load.audio("thankunext", "../sounds/thankunext.mp3");
   console.log(this);
   console.log(game);
 }
@@ -62,6 +63,8 @@ function preload() {
 function create() {
   //  A simple background for our game
   this.add.image(600, 330, "sky");
+  thankunext = this.sound.add('thankunext');
+  thankunext.play()
 
   //  The platforms group contains the ground and the 2 ledges we can jump on
   platforms = this.physics.add.staticGroup();
@@ -311,6 +314,7 @@ function hitComputer(player, computer) {
 
 function hitBomb(player, bomb) {
   this.physics.pause();
+  thankunext.stop()
 
   player.setTint(0xff0000);
 
