@@ -5,7 +5,7 @@ var config = {
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: 320 },
+      gravity: { y: 800 },
       debug: false,
     },
   },
@@ -83,7 +83,7 @@ function create() {
 
   player.setCollideWorldBounds(true);
 
-  player2 = this.physics.add.sprite(100, 450, "ariana").setScale(0.7);
+  player2 = this.physics.add.sprite(100, 450, "ariana").setScale(0.6);
 
 
   player2.setCollideWorldBounds(true);
@@ -142,7 +142,7 @@ function create() {
   //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
   stars = this.physics.add.group({
     key: "star",
-    repeat: 1,
+    repeat: 6,
     setXY: { x: 50, y: 0, stepX: 185 },
   });
 
@@ -203,7 +203,7 @@ function update() {
   }
   // so the character can jump, but needs to touch the ground
   if (cursors.up.isDown && player.body.touching.down) {
-    player.setVelocityY(-500);
+    player.setVelocityY(-600);
   }
   // to run fast (sprint) to the left
   if (cursors.down.isDown && player.body.touching.down && cursors.left.isDown) {
@@ -238,7 +238,7 @@ function update() {
   }
 
   if (player2Controls.up.isDown && player2.body.touching.down) {
-    player2.setVelocityY(-330);
+    player2.setVelocityY(-600);
   }
   if (
     player2Controls.down.isDown &&
@@ -318,7 +318,7 @@ function hitBomb(player, bomb) {
 
   player2.setTint(0xff0000);
 
-  player2.anims.play("turn");
+  player2.anims.play("turn_a");
 
   gameOver = true;
 }
