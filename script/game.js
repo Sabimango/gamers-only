@@ -35,6 +35,8 @@ function preload() {
   this.load.image("ground", "../images/platform.png");
   this.load.image("star", "../images/coffee1.png");
   this.load.image("bomb", "../images/bug123.png");
+  this.load.image("platform_big", "../images/platform_big.png");
+  this.load.image("platform_medium", "../images/platform_medium.png");
   this.load.image("computer", "../images/computer_js_38.png");
   this.load.spritesheet("dude", "../images/dude.png",
     {
@@ -69,12 +71,12 @@ function create() {
   platforms.create(700, 740, "ground").setScale(4).refreshBody();
 
   //  Now let's create some ledges
-  platforms.create(600, 400, "ground");
-  platforms.create(50, 250, "ground");
-  platforms.create(750, 220, "ground");
+  platforms.create(600, 460, "platform_big").setScale(1);
+  platforms.create(140, 270, "platform_medium");
+  platforms.create(1060, 250, "platform_medium");
 
   // The player and its settings
-  player = this.physics.add.sprite(700, 450, "pikachu").setScale(1);
+  player = this.physics.add.sprite(700, 450, "pikachu").setScale(0.8);
 
   //  Player physics properties. Give the little guy a slight bounce.
 
