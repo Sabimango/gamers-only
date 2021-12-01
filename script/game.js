@@ -56,6 +56,7 @@ function preload() {
   this.load.audio("coffee_sound", "../sounds/coffee_drink2.mp3");
   this.load.audio("windows_sound", "../sounds/windows_sound.mp3");
   this.load.audio("thankunext", "../sounds/thankunext.mp3");
+  this.load.audio("gameoversound", "../sounds/gameoversound.mp3");
   console.log(this);
   console.log(game);
 }
@@ -315,6 +316,9 @@ function hitComputer(player, computer) {
 function hitBomb(player, bomb) {
   this.physics.pause();
   thankunext.stop()
+
+  gameoversound = this.sound.add('gameoversound');
+  gameoversound.play()
 
   player.setTint(0xff0000);
 
