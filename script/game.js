@@ -54,7 +54,7 @@ function create() {
     1,
     0
   );
-  btnPlay.Play.anchor.set(0, 5, 0, 5);
+  /* btnPlay.anchor.set(0.5, 0.5); */
   //  A simple background for our game
   this.add.image(400, 300, "sky");
 
