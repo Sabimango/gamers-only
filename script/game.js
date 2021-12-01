@@ -34,6 +34,7 @@ function preload() {
   this.load.image("ground", "../images/platform.png");
   this.load.image("star", "../images/coffee1.png");
   this.load.image("bomb", "../images/bug123.png");
+  this.load.spritesheet("buttons", "../images/Buttons-red.png");
   this.load.spritesheet("dude", "../images/dude.png", {
     frameWidth: 32,
     frameHeight: 48,
@@ -43,6 +44,17 @@ function preload() {
 }
 
 function create() {
+  var btnPlay = game.add.button(
+    game.world.centerX,
+    200,
+    "buttons",
+    this.clickMe,
+    this,
+    0,
+    1,
+    0
+  );
+  btnPlay.Play.anchor.set(0, 5, 0, 5);
   //  A simple background for our game
   this.add.image(400, 300, "sky");
 
@@ -134,6 +146,10 @@ function create() {
   this.physics.add.overlap(player2, stars, collectStar, null, this);
 
   this.physics.add.collider(player2, bombs, hitBomb, null, this);
+}
+
+function clickMe() {
+  console.log("Clicked");
 }
 
 function update() {
