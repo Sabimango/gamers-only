@@ -142,7 +142,7 @@ function create() {
   //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
   stars = this.physics.add.group({
     key: "star",
-    repeat: 6,
+    repeat: 1,
     setXY: { x: 50, y: 0, stepX: 185 },
   });
 
@@ -291,36 +291,20 @@ function hitComputer(player, computer) {
   windows_sound.play()
   score += 10;
   scoreText.setText("Score: " + score);
+  var bomb = bombs.create(20, 16, "bomb");
+      bomb.setBounce(1);
+      bomb.setCollideWorldBounds(true);
+      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+  
 
   if (computers.countActive(true) === 0) {
 
     stars.children.iterate(function (child) {
       child.enableBody(true, child.x, 0, true, true);
 
-      var x =
-        player.x < 400
-          ? Phaser.Math.Between(400, 800)
-          : Phaser.Math.Between(0, 400);
-
-      var bomb = bombs.create(x, 16, "bomb");
-      bomb.setBounce(1);
-      bomb.setCollideWorldBounds(true);
-      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
     });
+    
   }
-
-
-
-
-
-  //     //  A new batch of stars to collect
-  //     stars.children.iterate(function (child) {
-  //       child.enableBody(true, child.x, 0, true, true)
-
-
-
-
-
 
 }
 
