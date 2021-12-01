@@ -46,7 +46,7 @@ function preload() {
       frameWidth: 82,
       frameHeight: 75,
     });
-    this.load.spritesheet("ariana", "../images/ariana_grande_sprite3.png",
+  this.load.spritesheet("ariana", "../images/ariana_grande_sprite3.png",
     {
       frameWidth: 156,
       frameHeight: 206,
@@ -77,12 +77,12 @@ function create() {
   player = this.physics.add.sprite(700, 450, "pikachu").setScale(1);
 
   //  Player physics properties. Give the little guy a slight bounce.
-  
+
   player.setCollideWorldBounds(true);
 
-  player2 = this.physics.add.sprite(100, 450, "ariana").setScale(1);
+  player2 = this.physics.add.sprite(100, 450, "ariana").setScale(0.8);
 
-  
+
   player2.setCollideWorldBounds(true);
 
   //  Pikachi animations, turning, walking left and walking right.
@@ -105,7 +105,7 @@ function create() {
     frameRate: 10,
     repeat: -1,
   });
-// Ariana animations
+  // Ariana animations
   this.anims.create({
     key: "left_a",
     frames: this.anims.generateFrameNumbers("ariana", { start: 13, end: 7 }),
