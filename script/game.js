@@ -54,7 +54,7 @@ function preload() {
       frameHeight: 206,
     });
   this.load.audio("coffee_sound", "../sounds/coffee_drink2.mp3");
-  this.load.audio("windows_sound", "../sounds/windows_sound.mp3");
+  this.load.audio("computersound", "../sounds/computersound.mp3");
   this.load.audio("thankunext", "../sounds/thankunext.mp3");
   this.load.audio("gameoversound", "../sounds/gameoversound.mp3");
   console.log(this);
@@ -291,8 +291,8 @@ function collectStar(player, star) {
 
 function hitComputer(player, computer) {
   computer.disableBody(true, true);
-  windows_sound = this.sound.add('windows_sound');
-  windows_sound.play()
+  computersound = this.sound.add('computersound');
+  computersound.play()
   score += 10;
   scoreText.setText("Score: " + score);
   var bomb = bombs.create(20, 16, "bomb");
