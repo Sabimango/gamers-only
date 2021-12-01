@@ -34,6 +34,7 @@ function preload() {
   this.load.image("ground", "../images/platform.png");
   this.load.image("star", "../images/coffee1.png");
   this.load.image("bomb", "../images/bug123.png");
+
   this.load.spritesheet("dude", "../images/dude.png", {
     frameWidth: 32,
     frameHeight: 48,
