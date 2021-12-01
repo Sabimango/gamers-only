@@ -142,13 +142,13 @@ function create() {
   //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
   stars = this.physics.add.group({
     key: "star",
-    repeat: 1,
-    setXY: { x: 12, y: 0, stepX: 70 },
+    repeat: 6,
+    setXY: { x: 50, y: 0, stepX: 185 },
   });
 
   stars.children.iterate(function (child) {
     //  Give each star a slightly different bounce
-    child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    child.setBounceY(Phaser.Math.FloatBetween(0.1, 0.3));
   });
 
   bombs = this.physics.add.group();
@@ -158,7 +158,7 @@ function create() {
   //  The score
   scoreText = this.add.text(16, 16, "score: 0", {
     fontSize: "32px",
-    fill: "#000",
+    fill: "#FFF",
   });
 
   //  Collide the player and the stars with the platforms
@@ -289,6 +289,8 @@ function hitComputer(player, computer) {
   computer.disableBody(true, true);
   windows_sound = this.sound.add('windows_sound');
   windows_sound.play()
+  score += 10;
+  scoreText.setText("Score: " + score);
 
   if (computers.countActive(true) === 0) {
 
