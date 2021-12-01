@@ -48,10 +48,10 @@ function preload() {
       frameWidth: 82,
       frameHeight: 75,
     });
-  this.load.spritesheet("ariana", "../images/ariana_grande_sprite3.png",
+  this.load.spritesheet("ariana", "../images/ariana_grande_sprite_brown.png",
     {
       frameWidth: 156,
-      frameHeight: 206,
+      frameHeight: 197,
     });
   this.load.audio("coffee_sound", "../sounds/coffee_drink2.mp3");
   this.load.audio("computersound", "../sounds/computersound.mp3");
