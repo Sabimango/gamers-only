@@ -267,4 +267,13 @@ function hitBomb(player, bomb) {
   player2.anims.play("turn");
 
   gameOver = true;
+
+  /* this.gameOverText.visible = true; */
+  this.input.on;
+  "pointerdown",
+    () => {
+      this.registry.destroy(), // destroy registry
+        this.events.off(), // disable all active events
+        this.scene.restart();
+    }; // restart current scene
 }
