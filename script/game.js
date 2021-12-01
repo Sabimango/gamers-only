@@ -193,11 +193,11 @@ function update() {
   }
   //move to the left with speed -160
   if (cursors.left.isDown) {
-    player.setVelocityX(-220);
+    player.setVelocityX(-280);
 
     player.anims.play("left", true);
   } else if (cursors.right.isDown) {
-    player.setVelocityX(220);
+    player.setVelocityX(280);
 
     player.anims.play("right", true);
   } else {
@@ -229,11 +229,11 @@ function update() {
   // player2 controls
 
   if (player2Controls.left.isDown) {
-    player2.setVelocityX(-220);
+    player2.setVelocityX(-280);
 
     player2.anims.play("left_a", true);
   } else if (player2Controls.right.isDown) {
-    player2.setVelocityX(220);
+    player2.setVelocityX(280);
 
     player2.anims.play("right_a", true);
   } else {
