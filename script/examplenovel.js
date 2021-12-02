@@ -129,7 +129,7 @@ var preload = [
           titleText, {text: "Pika and Aris Great Adventure 2: Big Trouble at Hyper Island!",
           width: 0.5, color: "white", border: "1px solid black",
           backgroundColor: "#800",
-          position: new Position(0.25, 0.3), align: "center"},
+          position: new Position(0.25, 0.1), align: "center"},
       ];
   }
   
