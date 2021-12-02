@@ -11,7 +11,7 @@ var source = "./sounds/ariana.mp3"
 
 /* section for images to be preloaded*/
 var preload = [
-    "images/ari1.png", "images/pikapika.png",
+    "images/pikapika.png",
     "images/ari2.png","images/ari3.png",
     "images/HI1.png","images/HI2.png", 
     "images/HI3.png", "images/pikapi.png",
@@ -45,9 +45,8 @@ var preload = [
   /* This function must exist for the engine */
   function prepareNovel()
   {
-      novel.imagePath = "images/"; // path to your image directory
-      novel.audioPath = ""; // path to your audio directory
-      
+      novel.imagePath = "images/"; // path to image directory
+
       // initialize characters, positions, and text blocks 
       pikachu = new Character("Pikachu", {color: "rgb(64, 204, 64)"});
       ariana = new Character("Ariana Grande", {color: "#ffff00"});
@@ -60,6 +59,7 @@ var preload = [
       
       photo = new Character("");  
       titleText = new TextBlock("myText");
+
 
       
       // script command in array
