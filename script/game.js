@@ -20,7 +20,7 @@ var player;
 var player2;
 var stars;
 var bombs;
-var computers
+var computers;
 var platforms;
 var cursors;
 var player2Controls;
@@ -38,21 +38,18 @@ function preload() {
   this.load.image("platform_big", "../images/platform_big.png");
   this.load.image("platform_medium", "../images/platform_medium.png");
   this.load.image("computer", "../images/computer_js_38.png");
-  this.load.spritesheet("dude", "../images/dude.png",
-    {
-      frameWidth: 32,
-      frameHeight: 48,
-    });
-  this.load.spritesheet("pikachu", "../images/pikachu_sprite1.png",
-    {
-      frameWidth: 82,
-      frameHeight: 75,
-    });
-  this.load.spritesheet("ariana", "../images/ariana_grande_sprite_brown.png",
-    {
-      frameWidth: 156,
-      frameHeight: 197,
-    });
+  this.load.spritesheet("dude", "../images/dude.png", {
+    frameWidth: 32,
+    frameHeight: 48,
+  });
+  this.load.spritesheet("pikachu", "../images/pikachu_sprite1.png", {
+    frameWidth: 82,
+    frameHeight: 75,
+  });
+  this.load.spritesheet("ariana", "../images/ariana_grande_sprite_brown.png", {
+    frameWidth: 156,
+    frameHeight: 197,
+  });
   this.load.audio("coffee_sound", "../sounds/coffee_drink2.mp3");
   this.load.audio("computersound", "../sounds/computersound.mp3");
   this.load.audio("thankunext", "../sounds/thankunext.mp3");
@@ -64,8 +61,8 @@ function preload() {
 function create() {
   //  A simple background for our game
   this.add.image(600, 330, "sky");
-  thankunext = this.sound.add('thankunext');
-  thankunext.play()
+  thankunext = this.sound.add("thankunext");
+  thankunext.play();
 
   //  The platforms group contains the ground and the 2 ledges we can jump on
   platforms = this.physics.add.staticGroup();
@@ -85,16 +82,11 @@ function create() {
 
   //  Player physics properties. Give the little guy a slight bounce.
 
-
-  // player.setCollideWorldBounds(true);
-
+  player.setCollideWorldBounds(true);
 
   player2 = this.physics.add.sprite(100, 450, "ariana").setScale(0.6);
 
-
-
-  // player2.setCollideWorldBounds(true);
-
+  player2.setCollideWorldBounds(true);
 
   //  Pikachi animations, turning, walking left and walking right.
   this.anims.create({
@@ -137,7 +129,6 @@ function create() {
     repeat: -1,
   });
 
-
   //  Input Events
   cursors = this.input.keyboard.createCursorKeys();
 
@@ -152,7 +143,7 @@ function create() {
     key: "star",
     repeat: 6,
     setXY: { x: 50, y: 0, stepX: 185 },
-    setScale: { x: 1.2, y: 1.2 }
+    setScale: { x: 1.2, y: 1.2 },
   });
 
   stars.children.iterate(function (child) {
@@ -173,7 +164,7 @@ function create() {
   //  Collide the player and the stars with the platforms
   this.physics.add.collider(player, platforms);
   this.physics.add.collider(player2, platforms);
-  this.physics.add.collider(stars, platforms)
+  this.physics.add.collider(stars, platforms);
   this.physics.add.collider(bombs, platforms);
   this.physics.add.collider(computers, platforms);
 
@@ -288,9 +279,8 @@ function update() {
 function collectStar(player, star) {
   star.disableBody(true, true);
 
-  coffee_sound = this.sound.add('coffee_sound');
-  coffee_sound.play()
-
+  coffee_sound = this.sound.add("coffee_sound");
+  coffee_sound.play();
 
   //  Add and update the score
   score += 10;
@@ -307,14 +297,14 @@ function collectStar(player, star) {
     computer.setBounce(1);
     computer.setCollideWorldBounds(true);
     computer.setVelocity(Phaser.Math.Between(-200, 200), 20);
-    computer.setScale(1.2, 1.2)
+    computer.setScale(1.2, 1.2);
   }
 }
 
 function hitComputer(player, computer) {
   computer.disableBody(true, true);
-  computersound = this.sound.add('computersound');
-  computersound.play()
+  computersound = this.sound.add("computersound");
+  computersound.play();
   score += 10;
   scoreText.setText("Score: " + score);
   var bomb = bombs.create(20, 16, "bomb");
@@ -322,25 +312,18 @@ function hitComputer(player, computer) {
   bomb.setCollideWorldBounds(true);
   bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
 
-
   if (computers.countActive(true) === 0) {
-
     stars.children.iterate(function (child) {
       child.enableBody(true, child.x, 0, true, true);
-
     });
-
   }
-
 }
 
-
 function hitBomb(player, bomb) {
+  thankunext.stop();
   this.physics.pause();
-  thankunext.stop()
-
-  gameoversound = this.sound.add('gameoversound');
-  gameoversound.play()
+  gameoversound = this.sound.add("gameoversound");
+  gameoversound.play();
 
   player.setTint(0xff0000);
 
@@ -351,4 +334,16 @@ function hitBomb(player, bomb) {
   player2.anims.play("turn_a");
 
   gameOver = true;
+
+  this.input.once(
+    "pointerdown",
+    function (event) {
+      this.registry.destroy(); // destroy registry
+      this.events.off(); // disable all active events
+      this.scene.restart();
+      this.physics.start();
+      gameOver = false; // restart current scene
+    },
+    this
+  );
 }
