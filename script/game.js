@@ -296,7 +296,7 @@ function collectStar(player, star) {
         ? Phaser.Math.Between(400, 800)
         : Phaser.Math.Between(0, 400);
 
-    var computer = computers.create(x, 16, "computer");
+    var computer = computers.create(1050, 16, "computer");
     computer.setBounce(1);
     computer.setCollideWorldBounds(true);
     computer.setVelocity(Phaser.Math.Between(-200, 200), 20);
@@ -351,6 +351,13 @@ function hitBomb(player, bomb) {
 
   helloButton1 = this.add.text(350, 350, "Click to Restart", {
     fontSize: "72px",
+    fill: "#FFF",
+    fontFamily: "Arial",
+    backgroundColor: "#000000",
+  });
+
+  helloButton1 = this.add.text(220, 550, "Tip: Computers spawn in the right corner and bugs spawn in left corner :)", {
+    fontSize: "25px",
     fill: "#FFF",
     fontFamily: "Arial",
     backgroundColor: "#000000",
