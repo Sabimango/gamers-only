@@ -1,14 +1,3 @@
-var source = "./sounds/ariana.mp3"
-  var audio = document.createElement("audio");
-  //
-  audio.autoplay = true;
-  //
-  audio.load()
-  audio.addEventListener("load", function() { 
-      audio.play(); 
-  }, true);
-  audio.src = source;
-
 /* section for images to be preloaded*/
 var preload = [
     "images/pikapika.png",
