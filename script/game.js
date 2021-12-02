@@ -27,6 +27,7 @@ var player2Controls;
 var score = 0;
 var gameOver = false;
 var scoreText;
+var helloButton;
 
 var game = new Phaser.Game(config);
 
@@ -335,15 +336,16 @@ function hitBomb(player, bomb) {
 
   gameOver = true;
 
-  this.input.once(
-    "pointerdown",
-    function (event) {
-      this.registry.destroy(); // destroy registry
-      this.events.off(); // disable all active events
-      this.scene.restart();
-      this.physics.start();
-      gameOver = false; // restart current scene
-    },
-    this
-  );
+  helloButton = this.add.text(100, 100, "Hello Phaser!", {
+    fill: "#0f0",
+  });
+  helloButton.setInteractive();
+
+  helloButton.on("pointerover", function (event) {
+    this.registry.destroy(); // destroy registry
+    this.events.off(); // disable all active events
+    this.scene.restart();
+    this.physics.start();
+    gameOver = false; // restart current scene
+  });
 }
