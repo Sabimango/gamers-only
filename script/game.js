@@ -339,6 +339,19 @@ function hitBomb(player, bomb) {
   player2.anims.play("turn_a");
 
   gameOver = true;
+  helloButton = this.add.text(300, 150, "Game Over", {
+    fontSize: "72px",
+    fill: "#FFF",
+    fontFamily: "Arial",
+    backgroundColor: "#000000",
+  });
+
+  helloButton1 = this.add.text(300, 350, "Click to Restart", {
+    fontSize: "72px",
+    fill: "#FFF",
+    fontFamily: "Arial",
+    backgroundColor: "#000000",
+  });
 
   this.input.once(
     "pointerdown",
