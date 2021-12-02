@@ -86,14 +86,14 @@ function create() {
   //  Player physics properties. Give the little guy a slight bounce.
 
 
-  player.setCollideWorldBounds(true);
+  // player.setCollideWorldBounds(true);
 
 
   player2 = this.physics.add.sprite(100, 450, "ariana").setScale(0.6);
 
 
 
-  player2.setCollideWorldBounds(true);
+  // player2.setCollideWorldBounds(true);
 
 
   //  Pikachi animations, turning, walking left and walking right.
@@ -152,7 +152,7 @@ function create() {
     key: "star",
     repeat: 6,
     setXY: { x: 50, y: 0, stepX: 185 },
-    setScale: { x: 1.2, y: 1.2}
+    setScale: { x: 1.2, y: 1.2 }
   });
 
   stars.children.iterate(function (child) {
@@ -307,7 +307,7 @@ function collectStar(player, star) {
     computer.setBounce(1);
     computer.setCollideWorldBounds(true);
     computer.setVelocity(Phaser.Math.Between(-200, 200), 20);
-    computer.setScale( 1.2, 1.2)
+    computer.setScale(1.2, 1.2)
   }
 }
 
@@ -318,10 +318,10 @@ function hitComputer(player, computer) {
   score += 10;
   scoreText.setText("Score: " + score);
   var bomb = bombs.create(20, 16, "bomb");
-      bomb.setBounce(1);
-      bomb.setCollideWorldBounds(true);
-      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-  
+  bomb.setBounce(1);
+  bomb.setCollideWorldBounds(true);
+  bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+
 
   if (computers.countActive(true) === 0) {
 
@@ -329,7 +329,7 @@ function hitComputer(player, computer) {
       child.enableBody(true, child.x, 0, true, true);
 
     });
-    
+
   }
 
 }
