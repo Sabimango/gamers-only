@@ -27,6 +27,7 @@ var player2Controls;
 var score = 0;
 var gameOver = false;
 var scoreText;
+var restartButton;
 
 var game = new Phaser.Game(config);
 
@@ -141,7 +142,7 @@ function create() {
   //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
   stars = this.physics.add.group({
     key: "star",
-    repeat: 6,
+    repeat: 0,
     setXY: { x: 50, y: 0, stepX: 185 },
     setScale: { x: 1.2, y: 1.2 },
   });
@@ -339,6 +340,20 @@ function hitBomb(player, bomb) {
   player2.anims.play("turn_a");
 
   gameOver = true;
+
+  helloButton = this.add.text(300, 150, "Game Over", {
+    fontSize: "72px",
+    fill: "#FFF",
+    fontFamily: "Arial",
+    backgroundColor: "#000000",
+  });
+
+  helloButton1 = this.add.text(300, 350, "Click to Restart", {
+    fontSize: "72px",
+    fill: "#FFF",
+    fontFamily: "Arial",
+    backgroundColor: "#000000",
+  });
 
   this.input.once(
     "pointerdown",
