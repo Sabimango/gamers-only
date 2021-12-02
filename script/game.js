@@ -78,13 +78,13 @@ function create() {
   platforms.create(600, 170, "platform_medium");
 
   // The player and its settings
-  player = this.physics.add.sprite(700, 450, "pikachu").setScale(0.8);
+  player = this.physics.add.sprite(700, 600, "pikachu").setScale(0.8);
 
   //  Player physics properties. Give the little guy a slight bounce.
 
   // player.setCollideWorldBounds(true);
 
-  player2 = this.physics.add.sprite(100, 450, "ariana").setScale(0.6);
+  player2 = this.physics.add.sprite(480, 570, "ariana").setScale(0.6);
 
   // player2.setCollideWorldBounds(true);
 
@@ -342,14 +342,14 @@ function hitBomb(player, bomb) {
   player2.anims.play("turn_a");
 
   gameOver = true;
-  helloButton = this.add.text(360, 150, "Game Over", {
+  helloButton = this.add.text(410, 150, "Game Over", {
     fontSize: "72px",
     fill: "#FFF",
     fontFamily: "Arial",
     backgroundColor: "#000000",
   });
 
-  helloButton1 = this.add.text(300, 350, "Click to Restart", {
+  helloButton1 = this.add.text(350, 350, "Click to Restart", {
     fontSize: "72px",
     fill: "#FFF",
     fontFamily: "Arial",
