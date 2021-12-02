@@ -85,12 +85,16 @@ function create() {
 
   //  Player physics properties. Give the little guy a slight bounce.
 
+
   player.setCollideWorldBounds(true);
+
 
   player2 = this.physics.add.sprite(100, 450, "ariana").setScale(0.6);
 
 
+
   player2.setCollideWorldBounds(true);
+
 
   //  Pikachi animations, turning, walking left and walking right.
   this.anims.create({
@@ -262,6 +266,22 @@ function update() {
   }
   if (player2Controls.down.isDown && player2.body.touching.none) {
     player2.setVelocityY(50);
+  }
+  if (cursors.right.isDown && player.x > this.physics.world.bounds.width) {
+    player.x = -1;
+  }
+  if (cursors.left.isDown && player.x < 0) {
+    player.x = this.physics.world.bounds.width;
+  }
+
+  if (
+    player2Controls.right.isDown &&
+    player2.x > this.physics.world.bounds.width
+  ) {
+    player2.x = -1;
+  }
+  if (player2Controls.left.isDown && player2.x < 0) {
+    player2.x = this.physics.world.bounds.width;
   }
 }
 
