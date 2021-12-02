@@ -7,8 +7,7 @@ var preload = [
     "images/HI4.jpg",
   ];
   
-  /* preloads images
-*/
+  /* preloads images*/
   var preloadObj = new Array(preload.length);
   for (var i = 0; i < preload.length; i++)
   {
@@ -16,7 +15,6 @@ var preload = [
       preloadObj[i].src = preload[i];
   }
 
-  
   /* variables for characters, positions, and text blocks */
   var script; // this variable will hold your script
   var tyler;
@@ -29,7 +27,6 @@ var preload = [
   var rightSide;
   var upperCenter;
   var rightTop;
-
 
   /* This function must exist for the engine */
   function prepareNovel()
