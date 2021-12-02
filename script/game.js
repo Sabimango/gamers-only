@@ -159,7 +159,8 @@ function create() {
   scoreText = this.add.text(16, 16, "score: 0", {
     fontSize: "32px",
     fill: "#FFF",
-    backgroundColor: "#000000"
+    backgroundColor: "#000000",
+    fontFamily: "Arial",
 
   });
 
