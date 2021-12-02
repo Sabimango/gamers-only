@@ -159,6 +159,8 @@ function create() {
   scoreText = this.add.text(16, 16, "score: 0", {
     fontSize: "32px",
     fill: "#FFF",
+    backgroundColor: "#000000"
+
   });
 
   //  Collide the player and the stars with the platforms

@@ -44,3 +44,8 @@ body {
 .menuItem:hover {
     background-color: #ff8c00;
 }
+
+#scoreT
+{
+font-family: 'Courier New', Courier, monospace;  
+}
