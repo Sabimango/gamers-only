@@ -1,0 +1,46 @@
+body {
+    text-align: center;
+}
+
+#novelDiv{
+    width: 1200px;
+    height: 700px;
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    text-align: center;
+   
+}
+
+#dialogDiv{
+   
+    font-size: 20px;
+    position: absolute;
+    width: 1190px;
+    height: 140px;
+    top: 550px;
+    left: 0;
+    padding: 5px;
+    background-color: #3d372c;
+    color: white;
+    text-align: left;
+    filter: alpha(opacity=75);
+    opacity: 0.75;
+}
+
+
+.menuItem {
+    font-size: 18px;
+    background-color: #0050a0;
+    color: white;
+    text-align: center;
+    width: 75%;
+    margin: 0.5em auto;
+    padding: 0.5em 3em;
+    border-radius: 15px;
+}
+
+.menuItem:hover {
+    background-color: #ff8c00;
+}
