@@ -7,8 +7,7 @@ var preload = [
     "images/HI4.jpg",
   ];
   
-  /* preloads images
-*/
+  /* preloads images*/
   var preloadObj = new Array(preload.length);
   for (var i = 0; i < preload.length; i++)
   {
@@ -16,7 +15,6 @@ var preload = [
       preloadObj[i].src = preload[i];
   }
 
-  
   /* variables for characters, positions, and text blocks */
   var script; // this variable will hold your script
   var tyler;
@@ -29,7 +27,6 @@ var preload = [
   var rightSide;
   var upperCenter;
   var rightTop;
-
 
   /* This function must exist for the engine */
   function prepareNovel()
@@ -132,7 +129,7 @@ var preload = [
           titleText, {text: "Pika and Aris Great Adventure 2: Big Trouble at Hyper Island!",
           width: 0.5, color: "white", border: "1px solid black",
           backgroundColor: "#800",
-          position: new Position(0.25, 0.3), align: "center"},
+          position: new Position(0.25, 0.1), align: "center"},
       ];
   }
   
