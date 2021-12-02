@@ -46,7 +46,7 @@ function preload() {
     frameWidth: 82,
     frameHeight: 75,
   });
-  this.load.spritesheet("ariana", "../images/ariana_grande_sprite_brown.png", {
+  this.load.spritesheet("ariana", "../images/ariana_grande_sprite_brown_red.png", {
     frameWidth: 156,
     frameHeight: 197,
   });
