@@ -337,6 +337,10 @@ function hitComputer(player, computer) {
 
 function hitBomb(player, bomb) {
   this.physics.pause();
+  // this.registry.destroy();
+  // this.events.off();
+  // this.scene.restart();
+
   thankunext.stop()
 
   gameoversound = this.sound.add('gameoversound');
