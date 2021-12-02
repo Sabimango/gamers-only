@@ -1,3 +1,14 @@
+var source = "./sounds/ariana.mp3"
+  var audio = document.createElement("audio");
+  //
+  audio.autoplay = true;
+  //
+  audio.load()
+  audio.addEventListener("load", function() { 
+      audio.play(); 
+  }, true);
+  audio.src = source;
+
 /* section for images to be preloaded*/
 var preload = [
     "images/ari1.png", "images/pikapika.png",
@@ -15,6 +26,7 @@ var preload = [
       preloadObj[i] = new Image();
       preloadObj[i].src = preload[i];
   }
+
   
   /* variables for characters, positions, and text blocks */
   var script; // this variable will hold your script
@@ -28,7 +40,8 @@ var preload = [
   var rightSide;
   var upperCenter;
   var rightTop;
-  
+
+
   /* This function must exist for the engine */
   function prepareNovel()
   {
@@ -98,8 +111,9 @@ var preload = [
           ariana, "Follow me nerd!",
           scene, "HI4.jpg",
           ariana, {image: "ari3.png", position: upperCenter},
-          ariana, "I knew that I could count on you! Sooo you have help us to catch the coffee cups from Roots Café and avoid the evil code chasing after us- U get it?",
+          ariana, "I knew that I could count on you! Sooo you have help us to catch the coffee cups from Roots Café and avoid the evil bugs chasing after us while we code- U get it?",
           ariana, "To play as Me, use the keys W,A,S,D! To play as pikachu- just use the arrow keys! Press the button start game below and you will figure out the rest!",
+          jump, "The End",
 
           titleText, {text: "Pika and Aris Great Adventure 2: Big Trouble at Hyper Island!",
               width: 0.5, color: "white", border: "1px solid black",
@@ -121,14 +135,15 @@ var preload = [
           ariana, "Follow me nerd!",
           scene, "HI4.jpg",
           ariana, {image: "ari3.png", position: upperCenter},
-          ariana, "I knew that I could count on you! Sooo you have help us to catch the coffee cups from Roots Café and avoid the evil code chasing after us- U get it?",
+          ariana, "I knew that I could count on you! Sooo you have help us to catch the coffee cups from Roots Café and avoid the evil bugs chasing after us while we code- U get it?",
           ariana, "To play as Me, use the keys W,A,S,D! To play as pikachu- just use the arrow keys! Press the button start game below and you will figure out the rest!",
+          jump, "The End",
 
+          label, "The End",
           titleText, {text: "Pika and Aris Great Adventure 2: Big Trouble at Hyper Island!",
-              width: 0.5, color: "white", border: "1px solid black",
-              backgroundColor: "#800",
-              position: new Position(0.25, 0.3), align: "center"},
-          
+          width: 0.5, color: "white", border: "1px solid black",
+          backgroundColor: "#800",
+          position: new Position(0.25, 0.3), align: "center"},
       ];
   }
   
